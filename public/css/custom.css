@@ -1,0 +1,178 @@
+@keyframes hightlightFlash {
+    0% {
+        background-color: none;
+    }
+    50% {
+        background-color: #ffff00;
+    }
+    100% {
+        background-color: none;
+    }
+}
+
+@-webkit-keyframes hightlightFlash {
+    0% {
+        background-color: none;
+    }
+    50% {
+        background-color: #ffff00;
+    }
+    100% {
+        background-color: none;
+    }
+}
+
+@-moz-keyframes hightlightFlash {
+    0% {
+        background-color: none;
+    }
+    50% {
+        background-color: #ffff00;
+    }
+    100% {
+        background-color: none;
+    }
+}
+
+@-ms-keyframes hightlightFlash {
+    0% {
+        background-color: none;
+    }
+    50% {
+        background-color: #ffff00;
+    }
+    100% {
+        background-color: none;
+    }
+}
+
+#chat-box > div.ng-enter {
+    -webkit-animation: bounceInRight 1s;
+    -moz-animation: bounceInRight 1s;
+    -ms-animation: bounceInRight 1s;
+    animation: bounceInRight 1s;
+}
+#chat-box > div.ng-leave {
+    -webkit-animation: bounceOutLeft 1s;
+    -moz-animation: bounceOutLeft 1s;
+    -ms-animation: bounceOutLeft 1s;
+    animation: bounceOutLeft 1s;
+}
+
+table.scoreboard > tbody > tr.ng-enter {
+    -webkit-animation: fadeIn 1s;
+    -moz-animation: fadeIn 1s;
+    -ms-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+table.scoreboard > tbody > tr.ng-move {
+    -webkit-animation: hightlightFlash 2s;
+    -moz-animation: hightlightFlash 2s;
+    -ms-animation: hightlightFlash 2s;
+    animation: hightlightFlash 2s;
+}
+
+table.scoreboard > tbody > tr.ng-leave {
+    -webkit-animation: fadeOut 1s;
+    -moz-animation: fadeOut 1s;
+    -ms-animation: fadeOut 1s;
+    animation: fadeOut 1s;
+}
+
+.expands {
+    width: 200px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.expands:hover {
+    width: auto;
+}
+
+.limit-text {
+    width: 200px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wordwrap {
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.wysiwyg-color-black {
+    color: black !important;
+}
+
+.wysiwyg-color-silver {
+    color: silver !important;
+}
+
+.wysiwyg-color-gray {
+    color: gray !important;
+}
+
+.wysiwyg-color-maroon {
+    color: maroon !important;
+}
+
+.wysiwyg-color-red {
+    color: red !important;
+}
+
+.wysiwyg-color-purple {
+    color: purple !important;
+}
+
+.wysiwyg-color-green {
+    color: green !important;
+}
+
+.wysiwyg-color-olive {
+    color: olive !important;
+}
+
+.wysiwyg-color-navy {
+    color: navy !important;
+}
+
+.wysiwyg-color-blue {
+    color: blue !important;
+}
+
+.wysiwyg-color-orange {
+    color: orange !important;
+}
+
+.navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > h4 {
+    margin: 0 0 0 0px !important;
+}
+
+.navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > p {
+    margin: 0 0 0 0px !important;
+}
+
+.center-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dotted {
+    border-bottom: 1px dashed #999999 !important;
+    text-decoration: none !important;
+    cursor: help !important;
+    color: blueviolet !important;
+    font-style: italic !important;
+}
+
+a.dotted-info {
+    border-bottom: 1px dashed #999999 !important;
+    cursor: help !important;
+    margin-left: 5px;
+}
