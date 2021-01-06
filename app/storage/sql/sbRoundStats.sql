@@ -1,7 +1,7 @@
 SELECT *
-FROM tbl_extendedroundstats
-WHERE server_id = ?
+FROM tbl_mapstats
+WHERE ServerID = ?
   AND round_id =
-    (SELECT MAX(round_id)
-     FROM tbl_extendedroundstats
-     WHERE server_id = ?)
+    (SELECT MAX(ID)
+     FROM tbl_mapstats
+     WHERE ServerID = ?)

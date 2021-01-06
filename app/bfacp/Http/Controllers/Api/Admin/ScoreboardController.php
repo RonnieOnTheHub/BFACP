@@ -171,6 +171,21 @@ class ScoreboardController extends BaseController
     }
 
     /**
+     * Sends a yell to the entire server, team, or selected player(s).
+     *
+     * @return MainHelper
+     */
+    public function postMap()
+    {
+        $this->hasPermission('admin.scoreboard.yell');
+        $this->data[] = [
+            'player'  => null,
+            'message' => $this->repository->client->adminMapListAdd(Input::get('map', "MP_001"), Input::get('gamemode', "ConquestLarge0"), Input::get('roundNum', 1)),
+        ];
+        return $this->_response();
+    }
+
+    /**
      * Sends a say to the entire server, team, or selected player(s).
      *
      * @return MainHelper

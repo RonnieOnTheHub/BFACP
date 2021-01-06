@@ -92,4 +92,41 @@
             {{ Former::close() }}
         </div>
     </div>
+    <div class="col-xs-12 col-sm-6">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Admin Change Map</h3>
+                </div>
+
+                {{ Former::vertical_open()->ng_submit('admin.changeMap()') }}
+
+                <div class="box-body">
+                    <div class="form-group">
+                        <label class="control-label">Select map</label>
+                        <select class="form-control" ng-options="key for (key,value) in maps" ng-model="map"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Game mode</label>
+                        <select class="form-control" ng-model="gamemode" ng-options="option as option for option in gameModesOptions[map]"></select>
+                    </div>
+                </div>
+
+                <div class="box-footer">
+                    <div class="input-group">
+                        <input type="number" ng-model="roundNum" placeholder="Number of rounds" class="form-control" ng-disabled="admin.processing || admin.action == 'nuke'" ng-enter="admin.submit()">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-danger btn-flat" ng-click="admin.changeMap()" ng-disabled="admin.processing">
+                                <ng-switch on="admin.success">
+                                    <span ng-switch-when="true"><i class="fa fa-cog fa-spin"></i> Processing...</span>
+                                    <span ng-switch-default>Change</span>
+                                </ng-switch>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+
+                {{ Former::close() }}
+            </div>
+        </div>
 </div>

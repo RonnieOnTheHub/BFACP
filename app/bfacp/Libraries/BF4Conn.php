@@ -100,7 +100,7 @@ class BF4Conn
         }
     }
 
-    private function _openConnection($debug = null)
+    public function _openConnection($debug = null)
     {
         $connection = false;
 
@@ -152,7 +152,7 @@ class BF4Conn
         }
     }
 
-    private function _closeConnection()
+    public function _closeConnection()
     {
 //      $this->_clientRequest("quit");
 

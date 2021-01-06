@@ -68,7 +68,7 @@ class LiveServerRepository extends BaseRepository
     /**
      * @var BF3Conn|BF4Conn|BFHConn|null
      */
-    protected $client = null;
+    public $client = null;
 
     /**
      * Tells us if we've successfully connected to the server.
@@ -397,7 +397,7 @@ class LiveServerRepository extends BaseRepository
         } else {
             $this->data['_presetmessages'] = [];
         }
-
+           /*
         $this->data['_teams'] = [
             [
                 'id'    => 1,
@@ -415,7 +415,8 @@ class LiveServerRepository extends BaseRepository
                 'id'    => 4,
                 'label' => sprintf('%s (%s)', $this->TEAM4['full_name'], 'Team 4'),
             ],
-        ];
+        ];]
+        */
 
         return $this;
     }

@@ -1434,6 +1434,8 @@ class BF3Conn
         return $this->_array2String($this->_clientRequest('mapList.append ' . $mapURI), 0);
     }
 
+
+
     /**
      * gets index of next map to be run
      *
@@ -1468,6 +1470,30 @@ class BF3Conn
     public function adminMaplistInsertMapInIndex($index, $mapURI)
     {
         return $this->_array2String($this->_clientRequest('mapList.insert ' . $index . ' ' . $mapURI), 0);
+    }
+
+    public function adminMapListAdd($map, $gamemode, $rounds)
+    {
+        $result = $this->_array2String($this->_clientRequest('mapList.add ' . $map . ' ' . $gamemode . ' ' . $rounds . ' 0'), 0);
+        if($result != "OK") {
+            return 'mapList.add ' . $map . ' ' . $gamemode . ' ' . $rounds . ' 0 failed:'.$result;
+        }
+
+        $result = $this->_array2String($this->_clientRequest('mapList.setNextMapIndex 0'), 0);
+        //if($result != "OK") {
+        //    return "mapList.setNextMapIndex 0 failed:".$result;
+        //}
+
+        $result = $this->_array2String($this->_clientRequest('mapList.runNextRound'), 0);
+        //if($result != "OK") {
+        //    return "mapList.runNextRound failed:".$result;
+        //}
+
+        $result = $this->_array2String($this->_clientRequest('mapList.remove 0'), 0);
+        //if($result != "OK") {
+        //    return "mapList.remove 0 failed:".$result;
+        //}
+        return $result;
     }
 
     /**

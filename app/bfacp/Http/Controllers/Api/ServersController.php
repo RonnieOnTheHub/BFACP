@@ -122,68 +122,83 @@ class ServersController extends BaseController
 
     public function scoreboardExtra($id)
     {
+        $data = array();
         $sql = File::get(storage_path() . DIRECTORY_SEPARATOR . 'sql' . DIRECTORY_SEPARATOR . 'sbRoundStats.sql');
 
         $stats = [
             [
-                'name'    => Lang::get('scoreboard.factions')[1]['full_name'] . ' - Tickets',
+                'name'    => 'Minimum Players Online',
+                'data'    => [],
+                'visible' => false,
+            ],
+            [
+                'name'    => 'Average Players Online',
+                'data'    => [],
+                'visible' => false,
+            ],
+            [
+                'name'    => 'Maximum Players Online',
                 'data'    => [],
                 'visible' => true,
             ],
             [
-                'name'    => Lang::get('scoreboard.factions')[2]['full_name'] . ' - Tickets',
-                'data'    => [],
-                'visible' => true,
-            ],
-            [
-                'name'    => Lang::get('scoreboard.factions')[1]['full_name'] . ' - Players',
+                'name'    => 'Players Joined Server',
                 'data'    => [],
                 'visible' => false,
             ],
             [
-                'name'    => Lang::get('scoreboard.factions')[2]['full_name'] . ' - Players',
+                'name'    => 'Players Left Server',
                 'data'    => [],
                 'visible' => false,
-            ],
-            [
-                'name'    => 'Players Online',
-                'data'    => [],
-                'visible' => false,
-            ],
+           ],
+           [
+               'name'    => 'New Players',
+               'data'    => [],
+               'visible' => false,
+          ],
         ];
-
-        $data['roundId'] = null;
-
-        $results = DB::select($sql, [$id, $id]);
+//rat
+        $data['ID'] = null;
+        $results = DB::select("SELECT ID, TimeMapLoad, MinPlayers, AvgPlayers, MaxPlayers, PlayersJoinedServer, PlayersLeftServer, MapName
+                               FROM tbl_mapstats
+                               WHERE ServerID = ?", [$id]);
+        $playerStats = DB::select("SELECT StatsID, FirstSeenOnServer
+                               FROM tbl_playerstats");
 
         foreach ($results as $result) {
-            if (is_null($data['roundId'])) {
-                $data['roundId'] = $result->round_id;
+            if (is_null($data['ID'])) {
+                $data['ID'] = $result->ID;
             }
 
             $stats[0]['data'][] = [
-                strtotime($result->roundstat_time) * 1000,
-                (int)$result->team1_tickets,
+                strtotime($result->TimeMapLoad) * 1000,
+                (int)$result->MinPlayers,
             ];
 
             $stats[1]['data'][] = [
-                strtotime($result->roundstat_time) * 1000,
-                (int)$result->team2_tickets,
+                strtotime($result->TimeMapLoad) * 1000,
+                (int)$result->AvgPlayers,
             ];
 
             $stats[2]['data'][] = [
-                strtotime($result->roundstat_time) * 1000,
-                (int)$result->team1_count,
+                strtotime($result->TimeMapLoad) * 1000,
+                (int)$result->MaxPlayers,
             ];
 
             $stats[3]['data'][] = [
-                strtotime($result->roundstat_time) * 1000,
-                (int)$result->team2_count,
+                strtotime($result->TimeMapLoad) * 1000,
+                (int)$result->PlayersJoinedServer,
             ];
 
             $stats[4]['data'][] = [
-                strtotime($result->roundstat_time) * 1000,
-                (int)($result->team1_count + $result->team2_count),
+                strtotime($result->TimeMapLoad) * 1000,
+                (int)$result->PlayersLeftServer,
+            ];
+          }
+        foreach ($playerStats as $playerStat) {
+            $stats[5]['data'][] = [
+                strtotime($playerStat->FirstSeenOnServer) * 1000,
+                (int)$playerStat->StatsID,
             ];
         }
 

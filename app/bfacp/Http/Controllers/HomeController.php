@@ -30,7 +30,7 @@ class HomeController extends BaseController
         });
 
         // Cache results for 1 day
-        $countryMap = Cache::remember('players.seen.country', 60 * 24, function () use (&$playerRepository) {
+        $countryMap = Cache::remember('players.seen.country', 60 * 1, function () use (&$playerRepository) {
             return $playerRepository->getPlayersSeenByCountry();
         });
 

@@ -28,6 +28,17 @@ angular.module('bfacp').factory('SBA', ['$http', function ($http) {
             return $http.post(baseurl + '/yell', payload);
         },
 
+        map: function (server_id, map, gamemode, roundNum) {
+            var payload = {
+                server_id: server_id,
+                map: map,
+                gamemode: gamemode,
+                roundNum: roundNum,
+            };
+
+            return $http.post(baseurl + '/map', payload);
+        },
+
         tell: function (server_id, players, message) {
             var payload = {
                 server_id: server_id,
